@@ -1,234 +1,171 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Laura, asistente virtual de orientación ciudadana sobre información pública relacionada con SEDENA.">
-
-    <title>SEDENA | Asistente virtual</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f3f5f3;
-            color: #26332b;
-        }
-
-        header {
-            background: #263b30;
-            color: white;
-            padding: 25px 8%;
-        }
-
-        .header-content {
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 27px;
-        }
-
-        header p {
-            margin: 8px 0 0;
-            color: #dce5df;
-        }
-
-        main {
-            max-width: 950px;
-            margin: 55px auto;
-            padding: 0 25px;
-        }
-
-        .hero {
-            background: white;
-            padding: 45px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.06);
-        }
-
-        .hero h2 {
-            font-size: 30px;
-            margin-top: 0;
-        }
-
-        .hero p {
-            line-height: 1.7;
-            color: #59645d;
-        }
-
-        .topics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .topic {
-            background: #f1f4f1;
-            padding: 18px;
-            border-radius: 8px;
-        }
-
-        .topic strong {
-            display: block;
-            margin-bottom: 7px;
-        }
-
-        .notice {
-            margin-top: 30px;
-            padding: 18px;
-            background: #f5f5f2;
-            border-left: 4px solid #738879;
-            font-size: 13px;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        .assistant-status {
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px solid #dce3dd;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .assistant-status p {
-            margin-bottom: 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #788078;
-            font-size: 13px;
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding: 25px;
-            }
-
-            .hero h2 {
-                font-size: 24px;
-            }
-
-            .topics {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#263d33">
+  <meta name="description" content="Laura, asistente virtual de orientación general sobre información pública relacionada con la Secretaría de la Defensa Nacional.">
+  <title>Laura | Asistente virtual</title>
+  <style>
+    :root {
+      --green: #263d33;
+      --green-2: #365344;
+      --sage: #718879;
+      --page: #f1f4f2;
+      --card: #ffffff;
+      --tile: #eff3f0;
+      --text: #26332c;
+      --muted: #66736b;
+      --border: #d9e2dc;
+      --shadow: 0 12px 34px rgba(28, 48, 37, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: Aptos, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    header {
+      background: var(--green);
+      color: #fff;
+      padding: 19px max(24px, calc((100% - 1120px) / 2));
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    header p { margin: 5px 0 0; color: #dce6df; font-size: .98rem; }
+    main {
+      width: min(1060px, calc(100% - 32px));
+      margin: 54px auto 42px;
+    }
+    .panel {
+      background: var(--card);
+      border-radius: 15px;
+      padding: clamp(24px, 5vw, 54px);
+      box-shadow: var(--shadow);
+    }
+    h2 {
+      margin: 0 0 15px;
+      color: var(--green);
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      line-height: 1.25;
+    }
+    .intro { color: var(--muted); max-width: 850px; margin: 0 0 14px; }
+    .section-label { color: var(--muted); margin: 20px 0 16px; }
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .topic {
+      background: var(--tile);
+      border-radius: 10px;
+      padding: 16px 18px;
+      min-height: 82px;
+    }
+    .topic h3 { margin: 0 0 3px; font-size: 1rem; color: var(--green); }
+    .topic p { margin: 0; font-size: .94rem; color: #4f5c54; }
+    .assistant {
+      margin-top: 30px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+    }
+    .assistant h3 { margin: 0 0 5px; color: var(--green); font-size: 1.05rem; }
+    .assistant p { margin: 0; color: var(--muted); }
+    .privacy {
+      margin-top: 28px;
+      padding: 17px 19px;
+      border-left: 4px solid var(--sage);
+      background: #f4f6f4;
+      color: #4f5a53;
+      font-size: .9rem;
+    }
+    .privacy strong { color: var(--green); }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      padding: 0 16px 25px;
+    }
+    @media (max-width: 640px) {
+      main { margin-top: 24px; }
+      .topics { grid-template-columns: 1fr; }
+      .panel { padding: 24px 19px; }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <h1>Laura | Asistente virtual</h1>
+    <p>Orientación e información institucional</p>
+  </header>
 
-<header>
-    <div class="header-content">
-        <h1>SEDENA | Asistente virtual</h1>
-        <p>Orientación e información institucional</p>
-    </div>
-</header>
+  <main>
+    <section class="panel" aria-labelledby="main-title">
+      <h2 id="main-title">¿En qué podemos orientarte?</h2>
+      <p class="intro">
+        Laura es un asistente virtual de voz diseñado para proporcionar orientación general
+        sobre trámites, servicios e información pública relacionada con la Secretaría de la
+        Defensa Nacional.
+      </p>
+      <p class="section-label">Puedes consultar información general sobre los siguientes temas:</p>
 
-<main>
-    <section class="hero">
+      <div class="topics">
+        <article class="topic">
+          <h3>Servicio Militar Nacional</h3>
+          <p>Información sobre cartilla y liberación.</p>
+        </article>
+        <article class="topic">
+          <h3>Reclutamiento</h3>
+          <p>Orientación sobre ingreso y requisitos generales.</p>
+        </article>
+        <article class="topic">
+          <h3>Educación Militar</h3>
+          <p>Información sobre planteles y admisión.</p>
+        </article>
+        <article class="topic">
+          <h3>Registro de armas</h3>
+          <p>Orientación sobre trámites administrativos.</p>
+        </article>
+        <article class="topic">
+          <h3>Plan DN-III-E</h3>
+          <p>Información general sobre apoyo a la población.</p>
+        </article>
+        <article class="topic">
+          <h3>Servicios institucionales</h3>
+          <p>Orientación y canales de atención.</p>
+        </article>
+      </div>
 
-        <h2>¿En qué podemos orientarte?</h2>
+      <section class="assistant" aria-label="Asistente virtual">
+        <h3>Asistente virtual Laura</h3>
+        <p>Utiliza el botón de conversación que aparece en la esquina inferior derecha para hablar con Laura.</p>
+      </section>
 
-        <p>
-            Este es un asistente virtual de voz diseñado para
-            proporcionar orientación sobre trámites, servicios
-            e información pública relacionada con la Secretaría
-            de la Defensa Nacional.
-        </p>
-
-        <p>
-            Puedes consultar información general sobre los
-            siguientes temas:
-        </p>
-
-        <div class="topics">
-
-            <div class="topic">
-                <strong>Servicio Militar Nacional</strong>
-                Información sobre cartilla y liberación.
-            </div>
-
-            <div class="topic">
-                <strong>Reclutamiento</strong>
-                Orientación sobre ingreso y requisitos generales.
-            </div>
-
-            <div class="topic">
-                <strong>Educación Militar</strong>
-                Información sobre planteles y admisión.
-            </div>
-
-            <div class="topic">
-                <strong>Registro de armas</strong>
-                Orientación sobre trámites administrativos.
-            </div>
-
-            <div class="topic">
-                <strong>Plan DN-III-E</strong>
-                Información general sobre apoyo a la población.
-            </div>
-
-            <div class="topic">
-                <strong>Servicios institucionales</strong>
-                Orientación y canales de atención.
-            </div>
-
-        </div>
-
-        <div class="assistant-status">
-            <strong>Asistente virtual Laura</strong>
-            <p>
-                El componente de voz se habilitará en una
-                siguiente etapa.
-            </p>
-        </div>
-
-        <div class="notice">
-            Este entorno presenta las capacidades tecnológicas
-            de ElevenLabs mediante un agente de inteligencia
-            artificial. No constituye un canal oficial de
-            atención de la Secretaría de la Defensa Nacional,
-            ni está conectado a sus sistemas institucionales.
-            La información proporcionada es orientativa y debe
-            verificarse en las fuentes oficiales correspondientes.
-        </div>
-
+      <aside class="privacy" aria-label="Aviso importante">
+        <strong>Aviso importante:</strong>
+        Este entorno presenta las capacidades tecnológicas de ElevenLabs mediante un agente de
+        inteligencia artificial. No constituye un canal oficial de atención de la Secretaría de
+        la Defensa Nacional ni está conectado a sus sistemas institucionales. La información
+        proporcionada es orientativa y debe verificarse en las fuentes oficiales correspondientes.
+        No compartas CURP, contraseñas, datos bancarios, documentos personales ni otra información sensible.
+      </aside>
     </section>
-</main>
+  </main>
 
-<footer>
-    Asistente virtual desarrollado con tecnología ElevenLabs.
-</footer>
+  <footer>Asistente virtual desarrollado con tecnología ElevenLabs.</footer>
 
-<!--
- INTEGRACION ELEVENLABS - LAURA
-  Estado: DESHABILITADO
-  No retirar este comentario hasta autorizar
-  la activacion del agente.
-
-  <elevenlabs-convai
-    agent-id="agent_0901m75t89k6f58vsn7z4caryemh">
-  </elevenlabs-convai>
-
-  <script
-    src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-    async
-    type="text/javascript">
-  </script>
--->
-
+  <!-- Widget de voz de ElevenLabs: habilitado para publicación y pruebas autorizadas. -->
+  <elevenlabs-convai agent-id="agent_0901m75t89k6f58vsn7z4caryemh"></elevenlabs-convai>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 </body>
 </html>
